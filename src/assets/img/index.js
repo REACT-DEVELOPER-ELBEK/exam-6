@@ -4,4 +4,6 @@ import sidebarProfile from './sidebar-profile.svg';
 import sidebarSettings from './sidebar-settings.svg';
 import editButton from './change.svg'
 import deleteButton from './delete.svg'
-export { sideBarLogo, sidebarProducts, sidebarProfile, sidebarSettings, editButton, deleteButton }
+import plus from './add-product.svg'
+import pushArrow from './push-arrow.svg'
+export { sideBarLogo, pushArrow, plus, sidebarProducts, sidebarProfile, sidebarSettings, editButton, deleteButton }

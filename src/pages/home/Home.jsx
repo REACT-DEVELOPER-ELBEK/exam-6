@@ -1,9 +1,9 @@
 import { useEffect, useState } from "react";
 import "./Home.scss";
 import axios from "axios";
-import { Link } from "react-router-dom";
+import { Link, useParams } from "react-router-dom";
 import { FiSearch } from "react-icons/fi";
-import { editButton, deleteButton } from "../../assets/img";
+import { editButton, deleteButton, plus, pushArrow } from "../../assets/img";
 // ?page=2&limit=5///////////////////////////////
 
 const Home = () => {
@@ -11,11 +11,19 @@ const Home = () => {
     "https://64dcf61be64a8525a0f76c4d.mockapi.io/api/v1/products";
   const [products, setProducts] = useState([]);
   useEffect(() => {
-    axios(`${MAIN_URL}?page=2&limit=4`)
+    axios(`${MAIN_URL}?page=1&limit=3`)
       .then((response) => setProducts(response.data))
       .catch((error) => console.log(error));
   }, []);
-  console.log(products);
+
+  function deleteProduct(productId) {
+    axios
+      .delete(`${MAIN_URL}/${productId}`)
+      .then((response) => console.log(`Product with ${productId} id deleted`))
+      .catch((error) => console.log(error));
+    // window.location.reload();
+  }
+  const [options, setOptions] = useState(false)
   return (
     <div className="home">
       <div className="container">
@@ -48,7 +56,7 @@ const Home = () => {
             <table>
               <tr>
                 <th>
-                  <input type="checkbox" /> <p>Наименование</p>
+                  <input checked type="checkbox" /> <p>Наименование</p>
                 </th>
                 <th>Артикул</th>
                 <th>Бренд</th>
@@ -59,22 +67,55 @@ const Home = () => {
                 <>
                   <tr>
                     <td>
-                      <input type="checkbox" />
-                      <h3>Товар {product.id}</h3>
+                      <input checked type="checkbox" />
+                      <Link to={`/product-view/${product.id}`}>Товар {product.id}</Link>
                     </td>
                     <td>{product.code}</td>
                     <td>{product.brand}</td>
                     <td>{product.price}</td>
                     <td>{product.priceSale}</td>
                     <td className="function__btns">
-                        <img onClick={()=>product.id} src={editButton} alt="" />
-                        <img src={deleteButton} alt="" />
+                      <img src={editButton} alt="" />
+                      <img
+                        onClick={() => deleteProduct(product.id)}
+                        src={deleteButton}
+                        alt=""
+                      />
                     </td>
                   </tr>
                 </>
               ))}
             </table>
+            <div className="pagination__navigators">
+              <select name="pagination" id="paginationSelect">
+                <option value="1">1</option>
+                <option value="2">2</option>
+                <option value="3">3</option>
+                <option value="4">4</option>
+                <option value="5">5</option>
+                <option value="6">6</option>
+                <option value="7">7</option>
+                <option value="8">8</option>
+                <option value="9">9</option>
+                <option value="10">10</option>
+                <option value="11">11</option>
+                <option value="12">12</option>
+                <option value="13">13</option>
+              </select>
+              <div className="select__pagination">
+                <button>&#60;</button>
+                <button>1</button>
+                <button>2</button>
+                <button>3</button>
+                <button>&#62;</button>
+              </div>
+            </div>
           </div>
+          <footer style={options?{display:"flex"}:{display:"none"}}>
+            <Link><button ><img src={plus} alt="plus" /> <p>Новый товар</p></button></Link>
+            <h3>© Anymarket 2022</h3>
+          </footer>
+          <button style={options?{transform: "rotate(180deg)"}:{transform: "rotate(360deg)"} } onClick={options?()=>setOptions(false) : ()=>setOptions(true)} id="arrow"><img src={pushArrow} alt="" /></button>
         </div>
       </div>
     </div>
