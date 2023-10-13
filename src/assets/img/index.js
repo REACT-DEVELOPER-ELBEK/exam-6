@@ -6,4 +6,5 @@ import editButton from './change.svg'
 import deleteButton from './delete.svg'
 import plus from './add-product.svg'
 import pushArrow from './push-arrow.svg'
-export { sideBarLogo, pushArrow, plus, sidebarProducts, sidebarProfile, sidebarSettings, editButton, deleteButton }
+import logOut from './logout.svg'
+export { sideBarLogo, logOut, pushArrow, plus, sidebarProducts, sidebarProfile, sidebarSettings, editButton, deleteButton }

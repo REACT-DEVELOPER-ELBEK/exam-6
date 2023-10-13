@@ -1,0 +1,80 @@
+$font: 'Mulish', sans-serif;
+.product {
+  .container {
+    .product__wrapper {
+      position: relative;
+      .product__item {
+        position: absolute;
+        right: 0;
+        top: -90vh;
+        display: flex;
+        gap: 150px;
+        align-items: center;
+        .detail__image {
+          img {
+            width: 423px;
+            height: 500px;
+            border-radius: 10px;
+            object-fit: cover;
+          }
+        }
+        .detail__content{
+            h1{
+                color: #000;
+                font-size: 42px;
+                font-weight: 500;
+                font-family: $font;
+            }
+            .detail__price{
+                margin-top: 16px;
+                display: flex;
+                gap: 24px;
+                align-items: center;
+                p,h6{
+                    color: #9F9F9F;
+                    font-family: $font;
+                    font-size: 24px;
+                    font-style: normal;
+                    font-weight: 500;
+                    line-height: normal;
+                }
+                p{
+                    text-decoration: line-through;
+                    font-weight: 400;
+                }
+                h6{
+                    color: #000;
+                    font-weight: 600;
+                    font-size: 26px;
+                }
+            }
+            h2{
+                color: #5c5858;
+                font-size: 36px;
+                font-weight: 600;
+                font-family: $font;
+                margin-top: 20px;
+            }
+            h3{
+                color: #000;
+                font-family: $font;
+                font-size: 20px;
+                max-width: 424px;
+                font-weight: 400;
+                margin-top: 18px;
+            }
+            h4{
+                color: #8d2929;
+                margin-top: 30px;
+                font-family: $font;
+                font-size: 18px;
+                font-weight: 600;
+                span{
+                    font-weight: 800;
+                }
+            }
+        }
+      }
+    }
+  }
+}

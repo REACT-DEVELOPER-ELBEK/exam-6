@@ -21,9 +21,11 @@ const Home = () => {
       .delete(`${MAIN_URL}/${productId}`)
       .then((response) => console.log(`Product with ${productId} id deleted`))
       .catch((error) => console.log(error));
-    // window.location.reload();
   }
-  const [options, setOptions] = useState(false)
+  const [options, setOptions] = useState(false);
+
+  // const [pagination, setPagination] = useState('')
+  // console.log(pagination*1);
   return (
     <div className="home">
       <div className="container">
@@ -40,7 +42,7 @@ const Home = () => {
           </nav>
           <div className="all__products">
             <div className="all__products__header">
-              <h2>Все товары ({products.length})</h2>
+              <h2>Все товары ({MAIN_URL.length})</h2>
               <div className="product__search">
                 <label htmlFor="search">
                   <FiSearch />
@@ -53,22 +55,22 @@ const Home = () => {
                 />
               </div>
             </div>
-            <table>
+            <table key={products.id}>
               <tr>
                 <th>
-                  <input checked type="checkbox" /> <p>Наименование</p>
+                  <input type="checkbox" /> <p>Наименование</p>
                 </th>
                 <th>Артикул</th>
                 <th>Бренд</th>
                 <th>Цена</th>
                 <th>Цена со скидкой</th>
               </tr>
-              {products.map((product) => (
+              {products.map((product, index) => (
                 <>
                   <tr>
-                    <td>
-                      <input checked type="checkbox" />
-                      <Link to={`/product-view/${product.id}`}>Товар {product.id}</Link>
+                    <td key={index}>
+                      <input type="checkbox" />
+                      <Link to={`/${product.id}`}>Товар {product.id}</Link>
                     </td>
                     <td>{product.code}</td>
                     <td>{product.brand}</td>
@@ -87,7 +89,7 @@ const Home = () => {
               ))}
             </table>
             <div className="pagination__navigators">
-              <select name="pagination" id="paginationSelect">
+              <select name="pagination">
                 <option value="1">1</option>
                 <option value="2">2</option>
                 <option value="3">3</option>
@@ -111,11 +113,25 @@ const Home = () => {
               </div>
             </div>
           </div>
-          <footer style={options?{display:"flex"}:{display:"none"}}>
-            <Link><button ><img src={plus} alt="plus" /> <p>Новый товар</p></button></Link>
+          <footer style={options ? { display: "flex" } : { display: "none" }}>
+            <Link to='/add-product'>
+              <button>
+                <img src={plus} alt="plus" /> <p>Новый товар</p>
+              </button>
+            </Link>
             <h3>© Anymarket 2022</h3>
           </footer>
-          <button style={options?{transform: "rotate(180deg)"}:{transform: "rotate(360deg)"} } onClick={options?()=>setOptions(false) : ()=>setOptions(true)} id="arrow"><img src={pushArrow} alt="" /></button>
+          <button
+            style={
+              options
+                ? { transform: "rotate(180deg)" }
+                : { transform: "rotate(360deg)" }
+            }
+            onClick={options ? () => setOptions(false) : () => setOptions(true)}
+            id="arrow"
+          >
+            <img src={pushArrow} alt="" />
+          </button>
         </div>
       </div>
     </div>

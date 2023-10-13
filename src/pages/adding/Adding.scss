@@ -1,0 +1,170 @@
+.add {
+  .container {
+    .add__wrapper {
+      position: absolute;
+      right: 3px;
+      top: 0;
+      nav {
+        width: 1250px;
+        height: 80px;
+        background: #fff;
+        padding: 16px 40px;
+        box-shadow: 0px 5px 40px 0px rgba(33, 33, 33, 0.05);
+        .nav__title {
+          h2 {
+            color: #212121;
+            font-family: Mulish;
+            font-size: 18px;
+            font-weight: 800;
+          }
+          &__links {
+            display: flex;
+            gap: 8px;
+            align-items: center;
+            margin-top: 4px;
+            a,
+            p {
+              color: #b5b5c3;
+              font-family: Mulish;
+              font-size: 13px;
+              font-style: normal;
+              font-weight: 700;
+              line-height: 21px;
+            }
+          }
+        }
+        display: flex;
+        justify-content: space-between;
+        button {
+          display: flex;
+          gap: 16px;
+          padding: 10px 12px;
+          align-items: center;
+          border-radius: 6px;
+          background: #f7f7ff;
+          p {
+            color: #212121;
+            font-family: Mulish;
+            font-size: 14px;
+            font-weight: 700;
+            line-height: 72%;
+          }
+        }
+      }
+      .adding__form {
+        margin-top: 16px;
+        border-radius: 12px;
+        background: #fff;
+        padding: 18px;
+        button {
+          color: #212121;
+          font-family: Mulish;
+          font-size: 14px;
+          font-weight: 700;
+          line-height: 72%;
+          padding: 14px 16px;
+          border-radius: 5px;
+          background: #f0f0f6;
+        }
+        .adding__inputs {
+          label {
+            color: #212121;
+            font-family: Mulish;
+            font-size: 15px;
+            font-weight: 700;
+            line-height: 72%;
+            span {
+              color: #f1419d;
+            }
+          }
+          input {
+            border-radius: 6px;
+            background: #f6f6fb;
+            padding-left: 15px;
+            &:valid {
+              color: #212121;
+              font-family: Mulish;
+              font-size: 15px;
+              font-weight: 500;
+              line-height: 72%;
+            }
+          }
+          border-radius: 9px;
+          border: 1px solid #f0f0f6;
+          padding: 15px;
+          .input {
+            display: flex;
+            flex-direction: column;
+            gap: 12px;
+            input {
+              width: 764px;
+              height: 44px;
+            }
+          }
+          .flex__input {
+            margin-top: 34px;
+            display: flex;
+            gap: 40px;
+            .input1 {
+              display: flex;
+              flex-direction: column;
+              gap: 12px;
+              input {
+                width: 362px;
+                height: 44px;
+              }
+            }
+          }
+          .price__flex {
+            margin-top: 30px;
+            display: flex;
+            gap: 40px;
+            .input2 {
+              display: flex;
+              flex-direction: column;
+              gap: 12px;
+              input {
+                width: 228px;
+                height: 44px;
+              }
+            }
+          }
+          .desc__input {
+            display: flex;
+            flex-direction: column;
+            margin-top: 51px;
+            gap: 12px;
+            input {
+              width: 764px;
+              height: 110px;
+            }
+          }
+        }
+      }
+      .submit__btns {
+        display: flex;
+        background: #fff;
+        margin-top: 10px;
+        padding: 20px 0;
+        gap: 8px;
+        justify-content: center;
+        button {
+          padding: 15px 20px;
+            font-family: Mulish;
+            line-height: 72%; 
+            font-weight: 800;
+            font-size: 14px;
+            border-radius: 6px;
+          &:first-child {
+            background: #1bc58d;
+            color: #fff;
+          }
+          &:last-child {
+            color: #80809b;
+            background: #F7F7FF;
+          }
+        }
+      }
+    }
+  }
+}
