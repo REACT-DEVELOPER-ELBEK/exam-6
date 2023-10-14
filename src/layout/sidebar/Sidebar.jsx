@@ -1,6 +1,5 @@
 import React from "react";
 import { NavLink } from "react-router-dom";
-import { useAuth } from "../../context/AuthContext";
 import {
   sideBarLogo,
   sidebarProducts,
@@ -8,29 +7,20 @@ import {
   sidebarSettings,
 } from "../../assets/img";
 import "./Sidebar.scss";
-
 const Header = () => {
-  const { user } = useAuth();
   return (
     <nav>
       <div className="sidebar__wrapper">
-        <NavLink to="/">
+        <NavLink to="/" className={({isActive})=>isActive?"link":"inactive"}>
           <img src={sideBarLogo} alt="" />
         </NavLink>
-        <NavLink>
+        <NavLink to='/profile' className={({isActive})=>isActive?"link":"inactive"}>
           <img src={sidebarSettings} alt="" />
         </NavLink>
-        {user && (
-          <NavLink to="profile">
+          <NavLink to="login" className={({isActive})=>isActive?"link":"inactive"}>
             <img src={sidebarProfile} alt="" />
           </NavLink>
-        )}
-        {!user && (
-          <NavLink to="login">
-            <img src={sidebarProfile} alt="" />
-          </NavLink>
-        )}
-        <NavLink to="products">
+        <NavLink to="products" className={({isActive})=>isActive?"link":"inactive"}>
           <img src={sidebarProducts} alt="" />
         </NavLink>
       </div>

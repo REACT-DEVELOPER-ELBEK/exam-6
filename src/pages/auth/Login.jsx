@@ -1,26 +1,19 @@
 import React, { useState } from "react";
-import { useNavigate } from "react-router-dom";
-import { useAuth } from "../../context/AuthContext";
 import "./Auth.scss";
 import { FiEyeOff, FiEye } from "react-icons/fi";
+import { useNavigate } from "react-router-dom";
 
 const Login = () => {
-  const navigate = useNavigate();
-  const { login } = useAuth();
+  let goProfile = useNavigate()
   const [isShown, setIsShown] = useState(false);
   const [isCharacter, setIsCharacter] = useState(true)
-
-  const [user, setUser] = useState({
-    username: "",
-    password: "",
-  });
-
-  const handleLogin = () => {
-    login(user);
-    navigate("/", {
-      replace: true,
-    });
-  };
+  const [userName, setUserName] = useState('') 
+  const [password, setPassword] = useState('') 
+  function submitLogin(){
+    localStorage.setItem('userName', JSON.stringify(userName))
+    localStorage.setItem('userPassword', JSON.stringify(password))
+    goProfile("/profile")
+  }
 
   return (
     <div className="login">
@@ -34,8 +27,7 @@ const Login = () => {
                 id="username"
                 name="username"
                 placeholder="Username"
-                value={user.username}
-                onChange={(e) => setUser({ ...user, username: e.target.value })}
+                onChange={(e)=>setUserName(e.target.value)}
               />
               <div className="auth__password">
                 <input
@@ -43,10 +35,7 @@ const Login = () => {
                   id="password"
                   name="password"
                   placeholder="Password"
-                  value={user.password}
-                  onChange={(e) =>
-                    setUser({ ...user, password: e.target.value })
-                  }
+                  onChange={(e)=>setPassword(e.target.value)}
                 />
                 <button>
                   {isShown ? (
@@ -64,7 +53,7 @@ const Login = () => {
               </div>
               <p className={isCharacter? "true":"false"}>Password have to be at least 8 characters</p>
             </div>
-            <button onClick={handleLogin}>Login</button>
+            <button onClick={()=>submitLogin()}>Login</button>
           </div>
           <div className="login-image-side">
             <img

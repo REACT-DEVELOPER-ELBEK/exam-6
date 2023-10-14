@@ -10,11 +10,12 @@ nav {
     gap: 38px;
     align-items: center;
     a {
-      &:nth-child(2) {
-        padding: 15px;
-        border-radius: 6px;
-        background: #6c6de5;
-      }
+      padding: 15px;
+      border-radius: 6px;
     }
   }
+}
+
+.link {
+  background: #6c6de5;
 }
