@@ -20,9 +20,9 @@ const Login = () => {
       localStorage.setItem("userName", JSON.stringify(userName));
       localStorage.setItem("userPassword", JSON.stringify(password));
       goProfile("/profile");
-      setTimeout(() => {
-        window.location.reload();
-      }, 900);
+      // setTimeout(() => {
+      //   window.location.reload();
+      // }, 900);
     }
   }
 
