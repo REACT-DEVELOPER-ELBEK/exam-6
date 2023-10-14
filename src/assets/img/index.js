@@ -7,4 +7,5 @@ import deleteButton from './delete.svg'
 import plus from './add-product.svg'
 import pushArrow from './push-arrow.svg'
 import logOut from './logout.svg'
-export { sideBarLogo, logOut, pushArrow, plus, sidebarProducts, sidebarProfile, sidebarSettings, editButton, deleteButton }
+import success from './success.png'
+export { sideBarLogo, success, logOut, pushArrow, plus, sidebarProducts, sidebarProfile, sidebarSettings, editButton, deleteButton }

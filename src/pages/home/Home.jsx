@@ -3,7 +3,7 @@ import "./Home.scss";
 import axios from "axios";
 import { Link, useParams } from "react-router-dom";
 import { FiSearch } from "react-icons/fi";
-import { editButton, deleteButton, plus, pushArrow } from "../../assets/img";
+import { editButton, success, deleteButton, plus, pushArrow } from "../../assets/img";
 // ?page=2&limit=5///////////////////////////////
 
 const Home = () => {
@@ -11,7 +11,7 @@ const Home = () => {
     "https://64dcf61be64a8525a0f76c4d.mockapi.io/api/v1/products";
   const [products, setProducts] = useState([]);
   useEffect(() => {
-    axios(`${MAIN_URL}?page=1&limit=3`)
+    axios(`${MAIN_URL}?limit=3&page=1`)
       .then((response) => setProducts(response.data))
       .catch((error) => console.log(error));
   }, []);
@@ -19,15 +19,25 @@ const Home = () => {
   function deleteProduct(productId) {
     axios
       .delete(`${MAIN_URL}/${productId}`)
-      .then((response) => console.log(`Product with ${productId} id deleted`))
+      .then((response) => setDeletedItem(productId))
       .catch((error) => console.log(error));
+      setModal(true)
   }
   const [options, setOptions] = useState(false);
+  const [modal, setModal] = useState(false)
 
-  // const [pagination, setPagination] = useState('')
-  // console.log(pagination*1);
+  const [pagination, setPagination] = useState('')
+  console.log(pagination);
+  const [deletedItem, setDeletedItem] = useState('')
   return (
     <div className="home">
+      <div className="modal__wrapper">
+      <div className="deleted__modal" style={modal?{top:"-70vh"}:{top: "-700vh"}}>
+        <img src={success} alt="" />
+        <h2>Are you shure to delete product with {deletedItem} delete</h2>
+        <button onClick={()=>window.location.reload()}>Delete</button>
+      </div>
+      </div>
       <div className="container">
         <div className="home__wrapper">
           <nav>
@@ -89,8 +99,8 @@ const Home = () => {
               ))}
             </table>
             <div className="pagination__navigators">
-              <select name="pagination">
-                <option value="1">1</option>
+              <select name="pagination" onChange={(e)=>setPagination(e.target.value)}>
+                <option value="1" selected>1</option>
                 <option value="2">2</option>
                 <option value="3">3</option>
                 <option value="4">4</option>
