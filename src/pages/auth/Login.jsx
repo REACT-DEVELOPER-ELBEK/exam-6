@@ -20,9 +20,9 @@ const Login = () => {
       localStorage.setItem("userName", JSON.stringify(userName));
       localStorage.setItem("userPassword", JSON.stringify(password));
       goProfile("/profile");
-      // setTimeout(() => {
-      //   window.location.reload();
-      // }, 900);
+      setTimeout(() => {
+        window.location.reload();
+      }, 1400);
     }
   }
 
@@ -66,7 +66,7 @@ const Login = () => {
                 Password have to be at least 8 characters
               </p>
             </div>
-            <button onClick={() => submitLogin()}>Login</button>
+            <button onClick={() => submitLogin()} type="submit">Login</button>
             <ToastContainer/>
           </div>
           <div className="login-image-side">
