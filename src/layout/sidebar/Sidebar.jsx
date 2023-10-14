@@ -1,5 +1,6 @@
 import React from "react";
 import { NavLink } from "react-router-dom";
+
 import {
   sideBarLogo,
   sidebarProducts,
@@ -17,7 +18,7 @@ const Header = () => {
         <NavLink to='/profile' className={({isActive})=>isActive?"link":"inactive"}>
           <img src={sidebarSettings} alt="" />
         </NavLink>
-          <NavLink to="login" className={({isActive})=>isActive?"link":"inactive"}>
+          <NavLink to={localStorage.getItem('userName')?"/profile":"/login"} className={({isActive})=>isActive?"link":"inactive"}>
             <img src={sidebarProfile} alt="" />
           </NavLink>
         <NavLink to="products" className={({isActive})=>isActive?"link":"inactive"}>

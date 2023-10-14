@@ -3,7 +3,13 @@ import "./Home.scss";
 import axios from "axios";
 import { Link, useParams } from "react-router-dom";
 import { FiSearch } from "react-icons/fi";
-import { editButton, success, deleteButton, plus, pushArrow } from "../../assets/img";
+import {
+  editButton,
+  success,
+  deleteButton,
+  plus,
+  pushArrow,
+} from "../../assets/img";
 // ?page=2&limit=5///////////////////////////////
 
 const Home = () => {
@@ -21,22 +27,25 @@ const Home = () => {
       .delete(`${MAIN_URL}/${productId}`)
       .then((response) => setDeletedItem(productId))
       .catch((error) => console.log(error));
-      setModal(true)
+    setModal(true);
   }
   const [options, setOptions] = useState(false);
-  const [modal, setModal] = useState(false)
+  const [modal, setModal] = useState(false);
 
-  const [pagination, setPagination] = useState('')
+  const [pagination, setPagination] = useState("");
   console.log(pagination);
-  const [deletedItem, setDeletedItem] = useState('')
+  const [deletedItem, setDeletedItem] = useState("");
   return (
     <div className="home">
       <div className="modal__wrapper">
-      <div className="deleted__modal" style={modal?{top:"-70vh"}:{top: "-700vh"}}>
-        <img src={success} alt="" />
-        <h2>Are you shure to delete product with {deletedItem} delete</h2>
-        <button onClick={()=>window.location.reload()}>Delete</button>
-      </div>
+        <div
+          className="deleted__modal"
+          style={modal ? { top: "-70vh" } : { top: "-700vh" }}
+        >
+          <img src={success} alt="" />
+          <h2>Are you sure to delete id {deletedItem} product delete</h2>
+          <button onClick={() => window.location.reload()}>Delete</button>
+        </div>
       </div>
       <div className="container">
         <div className="home__wrapper">
@@ -99,8 +108,13 @@ const Home = () => {
               ))}
             </table>
             <div className="pagination__navigators">
-              <select name="pagination" onChange={(e)=>setPagination(e.target.value)}>
-                <option value="1" selected>1</option>
+              <select
+                name="pagination"
+                onChange={(e) => setPagination(e.target.value)}
+              >
+                <option value="1" selected>
+                  1
+                </option>
                 <option value="2">2</option>
                 <option value="3">3</option>
                 <option value="4">4</option>
@@ -124,7 +138,7 @@ const Home = () => {
             </div>
           </div>
           <footer style={options ? { display: "flex" } : { display: "none" }}>
-            <Link to='/add-product'>
+            <Link to="/add-product">
               <button>
                 <img src={plus} alt="plus" /> <p>Новый товар</p>
               </button>

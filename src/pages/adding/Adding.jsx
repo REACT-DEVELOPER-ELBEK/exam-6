@@ -3,6 +3,8 @@ import "./Adding.scss";
 import { logOut } from "../../assets/img";
 import { useState } from "react";
 import axios from "axios";
+import { ToastContainer, toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 
 const Adding = () => {
   const [name, setName] = useState("");
@@ -12,18 +14,30 @@ const Adding = () => {
   const [priceSale, setPriceSale] = useState("");
   const [description, setDescription] = useState("");
 
-  const toHome = useNavigate()
+  const toHome = useNavigate();
 
-  function postProduct(e){
-    axios.post("https://64dcf61be64a8525a0f76c4d.mockapi.io/api/v1/products",{
-        name, 
+  function postProduct(e) {
+    if((name||barand||code||price||priceSale||description).trim().length == 0){
+      toast.error("Empty field(s)", {
+        theme: "colored",
+      })
+    }
+    else{
+      axios.post("https://64dcf61be64a8525a0f76c4d.mockapi.io/api/v1/products", {
+        name,
         barand,
         code,
         price,
         priceSale,
         description
-    })
-    toHome("/")
+      });
+      setTimeout(() => {
+        toHome("/");
+      }, 12050);
+      toast.success("Product successfully added", {
+        theme: "colored",
+      })
+    }
   }
   return (
     <div className="add">
@@ -100,8 +114,13 @@ const Adding = () => {
             </div>
           </div>
           <div className="submit__btns">
-            <button onClick={()=>postProduct()}>Сохранить</button>
-            <Link to='/'><button>Отмена</button></Link>
+            <div>
+              <button onClick={() => postProduct()}>Сохранить</button>
+              <ToastContainer />
+            </div>
+            <Link to='/'>
+              <button>Отмена</button>
+            </Link>
           </div>
         </div>
       </div>
