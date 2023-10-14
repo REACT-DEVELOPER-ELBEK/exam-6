@@ -17,7 +17,7 @@ const Adding = () => {
   const toHome = useNavigate();
 
   function postProduct(e) {
-    if(name||barand||code||price||priceSale||description.trim().length == 0){
+    if((name,barand,code,price,priceSale,description).trim().length == 0){
       toast.error("Please fill empty field(s)", {
         theme: "colored",
       })
@@ -33,7 +33,7 @@ const Adding = () => {
       });
       setTimeout(() => {
         toHome("/");
-      }, 12050);
+      }, 1200);
       toast.success("Product successfully added", {
         theme: "colored",
       })

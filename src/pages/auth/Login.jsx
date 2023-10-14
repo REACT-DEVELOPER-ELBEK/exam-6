@@ -12,7 +12,7 @@ const Login = () => {
   const [userName, setUserName] = useState("");
   const [password, setPassword] = useState("");
   function submitLogin() {
-    if (userName||password.trim().length == 0) {
+    if (userName,password.trim().length == 0) {
       toast.error("Please fill empty field(s)", {
         theme: "colored",
       });
