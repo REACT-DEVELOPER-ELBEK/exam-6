@@ -22,11 +22,11 @@ const Home = () => {
       .catch((error) => console.log(error));
   }, []);
   
-  function searchProduct(e){
-    let value = e.target.value
-    setSearch(value)
-  }
-  const [search, setSearch] = useState('')
+  // function searchProduct(e){
+  //   let value = e.target.value
+  //   setSearch(value)
+  // }
+  // const [search, setSearch] = useState('')
 
   function deleteProduct(productId) {
     axios
@@ -76,11 +76,11 @@ const Home = () => {
                   name="search"
                   id="search"
                   placeholder="Поиск"
-                  onChange={searchProduct}
                 />
               </div>
             </div>
-            <table key={products.id}>
+            <table>
+              <thead>
               <tr>
                 <th>
                   <input type="checkbox" />Наименование
@@ -90,8 +90,9 @@ const Home = () => {
                 <th>Цена</th>
                 <th>Цена со скидкой</th>
               </tr>
+              </thead>
               {products.map((product, index) => (
-                <>
+                <tbody key={index}>
                   <tr>
                     <td key={index}>
                       <input type="checkbox" />
@@ -110,7 +111,7 @@ const Home = () => {
                       />
                     </td>
                   </tr>
-                </>
+                </tbody>
               ))}
             </table>
             <div className="pagination__navigators">
