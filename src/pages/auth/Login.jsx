@@ -19,7 +19,7 @@ const Login = () => {
     } else {
       localStorage.setItem("userName", JSON.stringify(userName));
       localStorage.setItem("userPassword", JSON.stringify(password));
-      goProfile("");
+      goProfile("/");
       setTimeout(() => {
         window.location.reload();
       }, 1400);
