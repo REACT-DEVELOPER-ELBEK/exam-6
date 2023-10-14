@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import "./Home.scss";
 import axios from "axios";
 import { Link, useParams } from "react-router-dom";
@@ -21,6 +21,12 @@ const Home = () => {
       .then((response) => setProducts(response.data))
       .catch((error) => console.log(error));
   }, []);
+  
+  function searchProduct(e){
+    let value = e.target.value
+    setSearch(value)
+  }
+  const [search, setSearch] = useState('')
 
   function deleteProduct(productId) {
     axios
@@ -33,7 +39,6 @@ const Home = () => {
   const [modal, setModal] = useState(false);
 
   const [pagination, setPagination] = useState("");
-  console.log(pagination);
   const [deletedItem, setDeletedItem] = useState("");
   return (
     <div className="home">
@@ -43,7 +48,7 @@ const Home = () => {
           style={modal ? { top: "-70vh" } : { top: "-700vh" }}
         >
           <img src={success} alt="" />
-          <h2>Are you sure to delete id {deletedItem} product delete</h2>
+          <h2>Are you sure to delete ID {deletedItem} product?</h2>
           <button onClick={() => window.location.reload()}>Delete</button>
         </div>
       </div>
@@ -71,13 +76,14 @@ const Home = () => {
                   name="search"
                   id="search"
                   placeholder="Поиск"
+                  onChange={searchProduct}
                 />
               </div>
             </div>
             <table key={products.id}>
               <tr>
                 <th>
-                  <input type="checkbox" /> <p>Наименование</p>
+                  <input type="checkbox" />Наименование
                 </th>
                 <th>Артикул</th>
                 <th>Бренд</th>
@@ -110,10 +116,8 @@ const Home = () => {
             <div className="pagination__navigators">
               <select
                 name="pagination"
-                onChange={(e) => setPagination(e.target.value)}
               >
-                <option value="1" selected>
-                  1
+                <option value="1" defaultValue>
                 </option>
                 <option value="2">2</option>
                 <option value="3">3</option>
@@ -130,9 +134,9 @@ const Home = () => {
               </select>
               <div className="select__pagination">
                 <button>&#60;</button>
-                <button>1</button>
-                <button>2</button>
-                <button>3</button>
+                <button onClick={()=>setPagination('1')}>1</button>
+                <button onClick={()=>setPagination('2')}>2</button>
+                <button onClick={()=>setPagination('3')}>3</button>
                 <button>&#62;</button>
               </div>
             </div>

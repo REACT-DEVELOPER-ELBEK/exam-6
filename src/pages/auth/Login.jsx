@@ -2,17 +2,28 @@ import React, { useState } from "react";
 import "./Auth.scss";
 import { FiEyeOff, FiEye } from "react-icons/fi";
 import { useNavigate } from "react-router-dom";
+import { ToastContainer, toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 
 const Login = () => {
-  let goProfile = useNavigate()
+  let goProfile = useNavigate();
   const [isShown, setIsShown] = useState(false);
-  const [isCharacter, setIsCharacter] = useState(true)
-  const [userName, setUserName] = useState('') 
-  const [password, setPassword] = useState('') 
-  function submitLogin(){
-    localStorage.setItem('userName', JSON.stringify(userName))
-    localStorage.setItem('userPassword', JSON.stringify(password))
-    goProfile("/profile")
+  const [isCharacter, setIsCharacter] = useState(true);
+  const [userName, setUserName] = useState("");
+  const [password, setPassword] = useState("");
+  function submitLogin() {
+    if (userName||password.trim().length == 0) {
+      toast.error("Please fill empty field(s)", {
+        theme: "colored",
+      });
+    } else {
+      localStorage.setItem("userName", JSON.stringify(userName));
+      localStorage.setItem("userPassword", JSON.stringify(password));
+      goProfile("/profile");
+      setTimeout(() => {
+        window.location.reload();
+      }, 900);
+    }
   }
 
   return (
@@ -27,15 +38,15 @@ const Login = () => {
                 id="username"
                 name="username"
                 placeholder="Username"
-                onChange={(e)=>setUserName(e.target.value)}
+                onChange={(e) => setUserName(e.target.value)}
               />
               <div className="auth__password">
                 <input
-                  type={isShown?"text":"password"}
+                  type={isShown ? "text" : "password"}
                   id="password"
                   name="password"
                   placeholder="Password"
-                  onChange={(e)=>setPassword(e.target.value)}
+                  onChange={(e) => setPassword(e.target.value)}
                 />
                 <button>
                   {isShown ? (
@@ -51,9 +62,12 @@ const Login = () => {
                   )}
                 </button>
               </div>
-              <p className={isCharacter? "true":"false"}>Password have to be at least 8 characters</p>
+              <p className={isCharacter ? "true" : "false"}>
+                Password have to be at least 8 characters
+              </p>
             </div>
-            <button onClick={()=>submitLogin()}>Login</button>
+            <button onClick={() => submitLogin()}>Login</button>
+            <ToastContainer/>
           </div>
           <div className="login-image-side">
             <img

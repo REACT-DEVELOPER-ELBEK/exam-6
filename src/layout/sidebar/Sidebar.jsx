@@ -15,7 +15,7 @@ const Header = () => {
         <NavLink to="/" className={({isActive})=>isActive?"link":"inactive"}>
           <img src={sideBarLogo} alt="" />
         </NavLink>
-        <NavLink to='/profile' className={({isActive})=>isActive?"link":"inactive"}>
+        <NavLink to='/'>
           <img src={sidebarSettings} alt="" />
         </NavLink>
           <NavLink to={localStorage.getItem('userName')?"/profile":"/login"} className={({isActive})=>isActive?"link":"inactive"}>

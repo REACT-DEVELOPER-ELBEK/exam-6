@@ -17,8 +17,8 @@ const Adding = () => {
   const toHome = useNavigate();
 
   function postProduct(e) {
-    if((name||barand||code||price||priceSale||description).trim().length == 0){
-      toast.error("Empty field(s)", {
+    if(name||barand||code||price||priceSale||description.trim().length == 0){
+      toast.error("Please fill empty field(s)", {
         theme: "colored",
       })
     }

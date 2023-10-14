@@ -10,14 +10,14 @@ import Profile from "./pages/profile/Profile";
 function App() {
   return (
     <Router>
-        <Sidebar />
-        <Routes>
-          <Route path="/" element={<Home />} />
-          <Route path="/:id" element={<Details />} />
-          <Route path="/login" element={<Login />} />
-          <Route path="/add-product" element={<Adding />} />
-          <Route path="/profile" element={<Profile/>} />
-        </Routes>
+      <Sidebar />
+      <Routes>
+        <Route path="/" element={<Home />} />
+        <Route path="/:id" element={<Details />} />
+        <Route path="/login" element={<Login />} />
+        <Route path="/add-product" element={<Adding />} />
+        <Route path="/profile" element={<Profile />} />
+      </Routes>
     </Router>
   );
 }

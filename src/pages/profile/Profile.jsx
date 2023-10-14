@@ -13,7 +13,7 @@ const Profile = () => {
           <div className="profile__greet">
             <BiUserCircle className="profile__icon" />Добро пожаловать<p>{userName}</p>
           </div>
-          <button onClick={notify}>fwef</button>
+          <button onClick={notify}></button>
           <ToastContainer />
         </div>
       </div>
