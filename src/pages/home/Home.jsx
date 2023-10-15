@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 import "./Home.scss";
 import axios from "axios";
-import { Link, useParams } from "react-router-dom";
+import { Link, useNavigate, useParams } from "react-router-dom";
 import { RxExit } from "react-icons/rx";
 import { ToastContainer, toast } from "react-toastify";
 import { FiSearch } from "react-icons/fi";
@@ -20,7 +20,7 @@ const Home = () => {
     "https://64dcf61be64a8525a0f76c4d.mockapi.io/api/v1/products";
   const [products, setProducts] = useState([]);
   useEffect(() => {
-    axios(`${MAIN_URL}?limit=3&page=1`)
+    axios(`${MAIN_URL}?limit=3&page=${pagination[0]}`)
       .then((response) => setProducts(response.data))
       .catch((error) => console.log(error));
   }, []);
@@ -41,8 +41,9 @@ const Home = () => {
   const [options, setOptions] = useState(false);
   const [modal, setModal] = useState(false);
 
-  const [pagination, setPagination] = useState("");
+  const [pagination, setPagination] = useState([1]);
   const [deletedItem, setDeletedItem] = useState("");
+  
 
   function leaveAccaunt() {
     if (JSON.parse(localStorage.getItem("userName"))) {
@@ -60,7 +61,8 @@ const Home = () => {
       });
     }
   }
-  return (
+  const toLogin = useNavigate()
+  return !JSON.parse(localStorage.getItem('userName'))?toLogin('/login'):(
     <div className="home">
       <div className="modal__wrapper">
         <div
@@ -158,9 +160,9 @@ const Home = () => {
               </select>
               <div className="select__pagination">
                 <button>&#60;</button>
-                <button onClick={() => setPagination("1")}>1</button>
-                <button onClick={() => setPagination("2")}>2</button>
-                <button onClick={() => setPagination("3")}>3</button>
+                <button onClick={()=>setPagination([1])}>1</button>
+                <button onClick={()=>setPagination([2])}>2</button>
+                <button onClick={()=>setPagination([3])}>3</button>
                 <button>&#62;</button>
               </div>
             </div>
