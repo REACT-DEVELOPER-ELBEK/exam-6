@@ -16,7 +16,12 @@ const Login = () => {
       toast.error("Please fill empty field(s)", {
         theme: "colored",
       });
-    } else {
+    }else if(password.trim().length<8){
+      toast.error("Password should be at least", {
+        theme: "colored",
+      });
+    }
+     else {
       localStorage.setItem("userName", JSON.stringify(userName));
       localStorage.setItem("userPassword", JSON.stringify(password));
       goProfile("/");
