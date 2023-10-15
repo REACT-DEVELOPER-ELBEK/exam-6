@@ -47,7 +47,7 @@ const Home = () => {
   function leaveAccaunt() {
     if (JSON.parse(localStorage.getItem("userName"))) {
       localStorage.clear();
-      toast.success("You left you account", {
+      toast.success("You left your account", {
         theme: "colored",
       });
       setTimeout(() => {
