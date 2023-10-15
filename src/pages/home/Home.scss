@@ -39,6 +39,9 @@
         width: 1250px;
         height: 80px;
         background: #fff;
+        display: flex;
+        gap: 940px;
+        align-items: center;
         padding: 16px 40px;
         box-shadow: 0px 5px 40px 0px rgba(33, 33, 33, 0.05);
         .nav__title {
@@ -64,6 +67,19 @@
             }
           }
         }
+        button{
+          display: flex;
+          padding: 10px 12px;
+          gap: 8px;
+          border-radius: 6px;
+          background: #F7F7FF;
+          color: #212121;
+          font-family: Mulish;
+          font-size: 22px;
+          font-weight: 700;
+          line-height: 72%;
+          align-items: center;
+      }
       }
       .all__products {
         z-index: 1;

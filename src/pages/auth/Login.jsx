@@ -17,7 +17,7 @@ const Login = () => {
         theme: "colored",
       });
     }else if(password.trim().length<8){
-      toast.error("Password should be at least", {
+      toast.warning("Password should be at least 8 characters", {
         theme: "colored",
       });
     }

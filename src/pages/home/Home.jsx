@@ -1,8 +1,11 @@
-import { useEffect, useRef, useState } from "react";
+import { useEffect, useState } from "react";
 import "./Home.scss";
 import axios from "axios";
 import { Link, useParams } from "react-router-dom";
+import { RxExit } from "react-icons/rx";
+import { ToastContainer, toast } from "react-toastify";
 import { FiSearch } from "react-icons/fi";
+import {VscAccount} from 'react-icons/vsc'
 import {
   editButton,
   success,
@@ -21,7 +24,7 @@ const Home = () => {
       .then((response) => setProducts(response.data))
       .catch((error) => console.log(error));
   }, []);
-  
+
   // function searchProduct(e){
   //   let value = e.target.value
   //   setSearch(value)
@@ -40,6 +43,23 @@ const Home = () => {
 
   const [pagination, setPagination] = useState("");
   const [deletedItem, setDeletedItem] = useState("");
+
+  function leaveAccaunt() {
+    if (JSON.parse(localStorage.getItem("userName"))) {
+      localStorage.clear();
+      toast.success("You left you account", {
+        theme: "colored",
+      });
+      setTimeout(() => {
+        window.location.reload();
+      }, 1270);
+    }else{
+      toast.info('To Login please click on Login button', {
+        theme: "colored",
+        icon: <VscAccount/>
+      });
+    }
+  }
   return (
     <div className="home">
       <div className="modal__wrapper">
@@ -63,6 +83,11 @@ const Home = () => {
                 <Link to="/">Товары</Link>
               </div>
             </div>
+            <button onClick={leaveAccaunt}>
+              <RxExit />
+              {JSON.parse(localStorage.getItem("userName")) ? "Выйти" : "Войти"}
+            </button>
+            <ToastContainer />
           </nav>
           <div className="all__products">
             <div className="all__products__header">
@@ -81,15 +106,16 @@ const Home = () => {
             </div>
             <table>
               <thead>
-              <tr>
-                <th>
-                  <input type="checkbox" />Наименование
-                </th>
-                <th>Артикул</th>
-                <th>Бренд</th>
-                <th>Цена</th>
-                <th>Цена со скидкой</th>
-              </tr>
+                <tr>
+                  <th>
+                    <input type="checkbox" />
+                    Наименование
+                  </th>
+                  <th>Артикул</th>
+                  <th>Бренд</th>
+                  <th>Цена</th>
+                  <th>Цена со скидкой</th>
+                </tr>
               </thead>
               {products.map((product, index) => (
                 <tbody key={index}>
@@ -115,11 +141,8 @@ const Home = () => {
               ))}
             </table>
             <div className="pagination__navigators">
-              <select
-                name="pagination"
-              >
-                <option value="1" defaultValue>
-                </option>
+              <select name="pagination">
+                <option value="1" defaultValue></option>
                 <option value="2">2</option>
                 <option value="3">3</option>
                 <option value="4">4</option>
@@ -135,9 +158,9 @@ const Home = () => {
               </select>
               <div className="select__pagination">
                 <button>&#60;</button>
-                <button onClick={()=>setPagination('1')}>1</button>
-                <button onClick={()=>setPagination('2')}>2</button>
-                <button onClick={()=>setPagination('3')}>3</button>
+                <button onClick={() => setPagination("1")}>1</button>
+                <button onClick={() => setPagination("2")}>2</button>
+                <button onClick={() => setPagination("3")}>3</button>
                 <button>&#62;</button>
               </div>
             </div>

@@ -23,6 +23,22 @@
                     font-size: 50px;
                 }
             }
+            button{
+                display: flex;
+                padding: 10px 12px;
+                gap: 8px;
+                border-radius: 6px;
+                background: #F7F7FF;
+                color: #212121;
+                font-family: Mulish;
+                font-size: 22px;
+                right: -400px;
+                top: 20px;
+                position: absolute;
+                font-weight: 700;
+                line-height: 72%;
+                align-items: center;
+            }
         }
     }
 }

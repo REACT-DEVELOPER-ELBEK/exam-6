@@ -21,8 +21,7 @@ const Adding = () => {
       toast.error("Please fill empty field(s)", {
         theme: "colored",
       })
-    }
-    else{
+    }else{
       axios.post("https://64dcf61be64a8525a0f76c4d.mockapi.io/api/v1/products", {
         name,
         barand,
